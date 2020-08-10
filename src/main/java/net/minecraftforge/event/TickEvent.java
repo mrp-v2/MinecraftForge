@@ -44,6 +44,10 @@ public class TickEvent extends Event
         this.phase = phase;
     }
 
+    /**
+     * This event originates from {@link net.minecraft.server.MinecraftServer#tick(java.util.function.BooleanSupplier) MinecraftServer.tick(BooleanSupplier)}.
+     * It is a server event.
+     */
     public static class ServerTickEvent extends TickEvent {
         public ServerTickEvent(Phase phase)
         {
@@ -51,6 +55,10 @@ public class TickEvent extends Event
         }
     }
 
+    /**
+     * This event originates from {@link net.minecraft.client.Minecraft#runTick()}.
+     * It is a client event.
+     */
     public static class ClientTickEvent extends TickEvent {
         public ClientTickEvent(Phase phase)
         {
@@ -58,6 +66,12 @@ public class TickEvent extends Event
         }
     }
 
+    /**
+     * This event originates from {@link net.minecraft.server.MinecraftServer#updateTimeLightAndEntities(java.util.function.BooleanSupplier) MinecraftServer.updateTimeLightAndEntities(BooleanSupplier)}.
+     * It is a server event.
+     * <br>
+     * The event occurs during {@link ServerTickEvent ServerTickEvent}.
+     */
     public static class WorldTickEvent extends TickEvent {
         public final World world;
         public WorldTickEvent(LogicalSide side, Phase phase, World world)
@@ -66,6 +80,12 @@ public class TickEvent extends Event
             this.world = world;
         }
     }
+
+    /**
+     * This event originates from {@link PlayerEntity#tick()}.
+     * <br>
+     * This event occurs during {@link WorldTickEvent WorldTickEvent} on a server, and {@link ClientTickEvent ClientTickEvent} on a client.
+     */
     public static class PlayerTickEvent extends TickEvent {
         public final PlayerEntity player;
 
@@ -76,7 +96,14 @@ public class TickEvent extends Event
         }
     }
 
+    /**
+     * This event originates from {@link net.minecraft.client.Minecraft#runGameLoop(boolean)}.
+     * It is a client event.
+     */
     public static class RenderTickEvent extends TickEvent {
+        /**
+         * TODO
+         */
         public final float renderTickTime;
         public RenderTickEvent(Phase phase, float renderTickTime)
         {
