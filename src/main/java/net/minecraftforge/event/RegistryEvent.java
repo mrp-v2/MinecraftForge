@@ -42,7 +42,7 @@ public class RegistryEvent<T extends IForgeRegistryEntry<T>> extends GenericEven
         super(clazz);
     }
     /**
-     * Register new registries when you receive this event, through the {@link RecipeBuilder}
+     * Register new registries when you receive this event, through the {@link net.minecraftforge.registries.RegistryBuilder}
      */
     public static class NewRegistry extends net.minecraftforge.eventbus.api.Event implements IModBusEvent
     {
@@ -54,9 +54,9 @@ public class RegistryEvent<T extends IForgeRegistryEntry<T>> extends GenericEven
 
     /**
      * Register your objects for the appropriate registry type when you receive this event.
-     *
+     * <br>
      * <code>event.getRegistry().register(...)</code>
-     *
+     * <br>
      * The registries will be visited in alphabetic order of their name, except blocks and items,
      * which will be visited FIRST and SECOND respectively.
      *
