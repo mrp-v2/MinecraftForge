@@ -26,9 +26,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 /**
- * ServerChatEvent is fired whenever a C01PacketChatMessage is processed. <br>
- * This event is fired via {@link ForgeHooks#onServerChatEvent(NetHandlerPlayServer, String, ITextComponent)},
- * which is executed by the {@link NetHandlerPlayServer#processChatMessage(CPacketChatMessage)}<br>
+ * ServerChatEvent is fired whenever a {@link net.minecraft.network.play.client.CChatMessagePacket CChatMessagePacket} is processed. <br>
+ * This event is fired via {@link ForgeHooks#onServerChatEvent(net.minecraft.network.play.ServerPlayNetHandler, String, ITextComponent) ForgeHooks.onServerChatEvent(ServerPlayNetHandler, String, ITextComponent)},
+ * which is executed by the {@link net.minecraft.network.play.ServerPlayNetHandler#processChatMessage(net.minecraft.network.play.client.CChatMessagePacket) ServerPlayNetHandler.processChatMessage(CChatMessagePacket)}<br>
  * <br>
  * {@link #username} contains the username of the player sending the chat message.<br>
  * {@link #message} contains the message being sent.<br>
@@ -38,7 +38,7 @@ import net.minecraftforge.eventbus.api.Cancelable;
  * This event is {@link Cancelable}. <br>
  * If this event is canceled, the chat message is never distributed to all clients.<br>
  * <br>
- * This event does not have a result. {@link HasResult}<br>
+ * This event does not have a result. {@link HasResult HasResult}<br>
  * <br>
  * This event is fired on the {@link MinecraftForge#EVENT_BUS}.
  **/
