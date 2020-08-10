@@ -42,11 +42,11 @@ import net.minecraftforge.eventbus.api.GenericEvent;
  * <p>
  * Objects with capability support:
  * <ul>
- *     <li>{@link net.minecraft.tileentity.TileEntity}</li>
- *     <li>{@link net.minecraft.item.ItemStack}</li>
- *     <li>{@link net.minecraft.entity.Entity}</li>
- *     <li>{@link net.minecraft.world.World}</li>
- *     <li>{@link net.minecraft.world.chunk.Chunk}</li>
+ *     <li>{@link net.minecraft.tileentity.TileEntity TileEntity}</li>
+ *     <li>{@link net.minecraft.item.ItemStack ItemStack}</li>
+ *     <li>{@link net.minecraft.entity.Entity Entity}</li>
+ *     <li>{@link net.minecraft.world.World World}</li>
+ *     <li>{@link net.minecraft.world.chunk.Chunk Chunk}</li>
  * </ul></p>
  * 
  * Please note that as this is fired for ALL object creations efficient code is recommended.
