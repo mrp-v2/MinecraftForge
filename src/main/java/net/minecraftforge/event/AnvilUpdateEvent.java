@@ -28,22 +28,22 @@ import javax.annotation.Nonnull;
 /**
  * 
  * AnvilUpdateEvent is fired when a player places items in both the left and right slots of a anvil.
- * If the event is canceled, vanilla behavior will not run, and the output will be set to null.
- * If the event is not canceled, but the output is not null, it will set the output and not run vanilla behavior.
- * if the output is null, and the event is not canceled, vanilla behavior will execute.
+ * If the event is canceled, vanilla behavior will not run, and the output will be set to {@link ItemStack#EMPTY}.
+ * If the event is not canceled, and the output is not {@link ItemStack#EMPTY}, it will set the output and cost, and not run vanilla behavior.
+ * if the output is {@link ItemStack#EMPTY}, and the event is not canceled, vanilla behavior will execute.
  */
 @Cancelable
 public class AnvilUpdateEvent extends Event
 {
     @Nonnull
-    private final ItemStack left;  // The left side of the input
+    private final ItemStack left;
     @Nonnull
-    private final ItemStack right; // The right side of the input
-    private final String name;     // The name to set the item, if the user specified one.
+    private final ItemStack right;
+    private final String name;
     @Nonnull
-    private ItemStack output;      // Set this to set the output stack
-    private int cost;              // The base cost, set this to change it if output != null
-    private int materialCost; // The number of items from the right slot to be consumed during the repair. Leave as 0 to consume the entire stack.
+    private ItemStack output;
+    private int cost;
+    private int materialCost;
 
     public AnvilUpdateEvent(@Nonnull ItemStack left, @Nonnull ItemStack right, String name, int cost)
     {
@@ -55,16 +55,56 @@ public class AnvilUpdateEvent extends Event
         this.setMaterialCost(0);
     }
 
+    /**
+     * Gets the left side of the anvil input.
+     * */
     @Nonnull
     public ItemStack getLeft() { return left; }
+    /**
+     * Gets the right side of the anvil input.
+     * */
     @Nonnull
     public ItemStack getRight() { return right; }
+    /**
+     * Gets the name of the output item.
+     * */
     public String getName() { return name; }
+    /**
+     * Gets the output of the anvil.
+     * {@link ItemStack#EMPTY} indicates vanilla behavior should be used.
+     * */
     @Nonnull
     public ItemStack getOutput() { return output; }
+
+    /**
+     * Sets the output of the anvil.
+     * To modify the experience cost, use {@link AnvilUpdateEvent#setCost(int)}.
+     *      
+     * @param output The output of the anvil.
+     */
     public void setOutput(@Nonnull ItemStack output) { this.output = output; }
+    /**
+     * Gets the cost of the operation.
+     * This is only applied if {@link AnvilUpdateEvent#setOutput(ItemStack)} is also used.
+     * */
     public int getCost() { return cost; }
+    /**
+     * Sets the cost of the operation.
+     * This is only applied if {@link AnvilUpdateEvent#setOutput(ItemStack)} is also used.
+     * 
+     * @param cost The cost of the operation.
+     * */
     public void setCost(int cost) { this.cost = cost; }
+    /**
+     * Gets the number of items in the right input slot of the anvil that will be consumed by the operation.
+     * A value of 0 or less means the entire stack will be consumed.
+     * */
     public int getMaterialCost() { return materialCost; }
+    /**
+     * Sets the number of items in the right input slot of the anvil that will be consumed by the operation.
+     * A value of 0 or less means the entire stack will be consumed.
+     * 
+     * @param materialCost The number of items to consume from the right input slot.
+     * */
     public void setMaterialCost(int materialCost) { this.materialCost = materialCost; }
 }
