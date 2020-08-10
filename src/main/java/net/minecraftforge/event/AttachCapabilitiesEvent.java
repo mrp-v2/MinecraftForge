@@ -37,9 +37,18 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.eventbus.api.GenericEvent;
 
 /**
- * Fired whenever an object with Capabilities support {currently TileEntity/Item/Entity)
- * is created. Allowing for the attachment of arbitrary capability providers.
- *
+ * Fired whenever an object with capabilities support is created.
+ * Allowing for the attachment of arbitrary capability providers.
+ * <p>
+ * Objects with capability support:
+ * <ul>
+ *     <li>{@link net.minecraft.tileentity.TileEntity}</li>
+ *     <li>{@link net.minecraft.item.ItemStack}</li>
+ *     <li>{@link net.minecraft.entity.Entity}</li>
+ *     <li>{@link net.minecraft.world.World}</li>
+ *     <li>{@link net.minecraft.world.chunk.Chunk}</li>
+ * </ul></p>
+ * 
  * Please note that as this is fired for ALL object creations efficient code is recommended.
  * And if possible use one of the sub-classes to filter your intended objects.
  */
@@ -58,7 +67,7 @@ public class AttachCapabilitiesEvent<T> extends GenericEvent<T>
     }
 
     /**
-     * Retrieves the object that is being created, Not much state is set.
+     * Retrieves the object that is being created.
      */
     public T getObject()
     {
