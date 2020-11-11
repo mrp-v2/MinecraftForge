@@ -1283,4 +1283,9 @@ public class ForgeHooks
         }
         chunk.setStructureReferences(structureReferences);
     }
+    
+    public static boolean canSustainPlant(IWorldReader world, BlockPos pos, Direction face, IPlantable plant)
+    {
+        return world.getBlockState(pos).canSustainPlant(world, pos, face, plant);
+    }
 }

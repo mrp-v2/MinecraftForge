@@ -41,12 +41,12 @@
     @OnlyIn(Dist.CLIENT)
     public ITextComponent func_195789_b() {
        return this.field_195802_d;
-@@ -113,6 +125,8 @@
-    public IPackNameDecorator func_232614_i_() {
+@@ -114,6 +126,8 @@
        return this.field_232611_k_;
     }
-+
-+   public boolean isHidden() { return hidden; }
  
++   public boolean isHidden() { return hidden; }
++
     public boolean equals(Object p_equals_1_) {
        if (this == p_equals_1_) {
+          return true;
