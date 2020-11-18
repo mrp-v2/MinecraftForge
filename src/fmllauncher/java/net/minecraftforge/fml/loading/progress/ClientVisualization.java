@@ -51,14 +51,20 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 
 class ClientVisualization implements EarlyProgressVisualization.Visualization {
-    private final int screenWidth = 854;
-    private final int screenHeight = 480;
+    private final int screenWidth;
+    private final int screenHeight;
     private long window;
     private Thread renderThread = new Thread(this::renderThreadFunc);
 
     private boolean running = true;
     private GLFWFramebufferSizeCallback framebufferSizeCallback;
     private int[] fbSize;
+
+    ClientVisualization(int screenWidth, int screenHeight)
+    {
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight;
+    }
 
     private void initWindow() {
         GLFWErrorCallback.createPrint(System.err).set();

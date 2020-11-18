@@ -185,7 +185,7 @@ public class FMLLoader
         naming = commonLaunchHandler.getNaming();
         dist = commonLaunchHandler.getDist();
         production = commonLaunchHandler.isProduction();
-        progressWindowTick = EarlyProgressVisualization.INSTANCE.accept(dist, commonLaunchHandler.isData());
+        progressWindowTick = EarlyProgressVisualization.INSTANCE.accept(dist, commonLaunchHandler.isData(), (Integer)arguments.get("screenWidth"), (Integer)arguments.get("screenHeight"));
         StartupMessageManager.modLoaderConsumer().ifPresent(c->c.accept("Early Loading!"));
         accessTransformer.getExtension().accept(Pair.of(naming, "srg"));
 

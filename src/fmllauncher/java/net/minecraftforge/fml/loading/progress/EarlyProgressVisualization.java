@@ -32,8 +32,8 @@ public enum EarlyProgressVisualization {
 
     private Visualization visualization;
 
-    public Runnable accept(final Dist dist, final boolean isData) {
-        visualization = !isData && dist.isClient() && Boolean.parseBoolean(System.getProperty("fml.earlyprogresswindow", "true")) ? new ClientVisualization() : new NoVisualization();
+    public Runnable accept(final Dist dist, final boolean isData, int screenWidth, int screenHeight) {
+        visualization = !isData && dist.isClient() && Boolean.parseBoolean(System.getProperty("fml.earlyprogresswindow", "true")) ? new ClientVisualization(screenWidth, screenHeight) : new NoVisualization();
         return visualization.start();
     }
 

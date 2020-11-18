@@ -57,6 +57,8 @@ public class FMLServiceProvider implements ITransformationService
     private ArgumentAcceptingOptionSpec<String> forgeGroupOption;
     private ArgumentAcceptingOptionSpec<String> mcpOption;
     private ArgumentAcceptingOptionSpec<String> mappingsOption;
+    private ArgumentAcceptingOptionSpec<Integer> screenWidthOption;
+    private ArgumentAcceptingOptionSpec<Integer> screenHeightOption;
     private List<String> modsArgumentList;
     private List<String> modListsArgumentList;
     private List<String> mavenRootsArgumentList;
@@ -65,6 +67,8 @@ public class FMLServiceProvider implements ITransformationService
     private String targetMcpVersion;
     private String targetMcpMappings;
     private String targetForgeGroup;
+    private int screenWidth;
+    private int screenHeight;
     private Map<String, Object> arguments;
 
     @Override
@@ -90,6 +94,8 @@ public class FMLServiceProvider implements ITransformationService
         arguments.put("mcVersion", targetMcVersion);
         arguments.put("mcpVersion", targetMcpVersion);
         arguments.put("mcpMappings", targetMcpMappings);
+        arguments.put("screenWidth", screenWidth);
+        arguments.put("screenHeight", screenHeight);
         LOGGER.debug(CORE, "Preparing launch handler");
         FMLLoader.setupLaunchHandler(environment, arguments);
         FMLEnvironment.setupInteropEnvironment(environment);
@@ -133,6 +139,8 @@ public class FMLServiceProvider implements ITransformationService
         modsOption = argumentBuilder.apply("mods", "List of mods to add").withRequiredArg().ofType(String.class).withValuesSeparatedBy(",");
         modListsOption = argumentBuilder.apply("modLists", "JSON modlists").withRequiredArg().ofType(String.class).withValuesSeparatedBy(",");
         mavenRootsOption = argumentBuilder.apply("mavenRoots", "Maven root directories").withRequiredArg().ofType(String.class).withValuesSeparatedBy(",");
+        screenWidthOption = argumentBuilder.apply("width", "The width of the screen").withRequiredArg().ofType(int.class).defaultsTo(854);
+        screenHeightOption = argumentBuilder.apply("height", "The height of the screen").withRequiredArg().ofType(int.class).defaultsTo(480);
     }
 
     @Override
@@ -146,6 +154,8 @@ public class FMLServiceProvider implements ITransformationService
         targetMcVersion = option.value(mcOption);
         targetMcpVersion = option.value(mcpOption);
         targetMcpMappings = option.value(mappingsOption);
+        screenWidth = option.value(screenWidthOption);
+        screenHeight = option.value(screenHeightOption);
     }
 
     @Nonnull
